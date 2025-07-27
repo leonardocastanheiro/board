@@ -2,12 +2,9 @@ package br.com.dio.persistence.entity;
 
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
 @Data
 public class BoardEntity {
 
@@ -15,5 +12,5 @@ public class BoardEntity {
 
     private String name;
 
-    private List<BoardColumnEntity> columns;
+    private List<BoardColumnEntity> columns = new ArrayList<>();
 }

@@ -2,13 +2,10 @@ package br.com.dio.persistence.entity;
 
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
 @Data
 public class BoardColumnEntity {
     private Long id;
@@ -17,6 +14,6 @@ public class BoardColumnEntity {
     private BoardColumnKindEnum kind;
     private int order;
 
-    private List<CardEntity> cards;
-    private BoardEntity board;
+    private List<CardEntity> cards = new ArrayList<>();
+    private BoardEntity board = new BoardEntity();
 }

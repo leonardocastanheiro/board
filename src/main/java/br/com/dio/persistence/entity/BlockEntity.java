@@ -4,10 +4,6 @@ import lombok.*;
 
 import java.time.OffsetDateTime;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
 @Data
 public class BlockEntity {
     private Long id;

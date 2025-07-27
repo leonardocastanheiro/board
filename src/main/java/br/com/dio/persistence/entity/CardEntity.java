@@ -5,10 +5,6 @@ import lombok.*;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
 @Data
 public class CardEntity {
     private Long id;
