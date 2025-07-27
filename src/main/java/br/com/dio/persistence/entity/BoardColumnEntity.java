@@ -16,4 +16,5 @@ public class BoardColumnEntity {
 
     private List<CardEntity> cards = new ArrayList<>();
     private BoardEntity board = new BoardEntity();
+
 }

@@ -44,6 +44,7 @@ public class BoardColumnDAO {
         var sql = "SELECT * FROM BOARDS_COLUMNS WHERE board_id = ? ORDER  BY `order`";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setLong(1, id);
 
             ResultSet resultSet = preparedStatement.executeQuery();;
 
