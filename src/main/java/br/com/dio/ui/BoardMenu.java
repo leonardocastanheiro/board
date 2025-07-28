@@ -298,6 +298,9 @@ public class BoardMenu {
     }
 
     private void showColumns() throws SQLException {
+
+        updateBoard();
+
         board.getColumns().forEach(column -> {
             System.out.println(
                     "Nome: "   + column.getName()  +
@@ -311,6 +314,9 @@ public class BoardMenu {
     }
 
     private void showColumnsWithCards() throws SQLException {
+
+        updateBoard();
+
         board.getColumns().forEach(column -> {
             System.out.println("Nome: "+column.getName()+ " ID: "+column.getId() + " Tipo: " + column.getKind() + " (Ordem " + column.getOrder() + ")");
             System.out.println("– Cartões:");
@@ -325,6 +331,7 @@ public class BoardMenu {
     }
 
     private void showCard() throws SQLException {
+
         System.out.print("Informe o ID do card que deseja visualizar: ");
 
         Long id;
