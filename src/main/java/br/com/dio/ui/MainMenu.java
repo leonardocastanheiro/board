@@ -55,8 +55,9 @@ public class MainMenu {
                     this.deleteBoard();
                     break;
                 case 4:
+                    System.out.println("Fechando o Programa...");
                     scanner.close();
-                    return;
+                    System.exit(0);
                 default:
                     System.out.println("Opção inválida! Erro interno");
             }
@@ -130,7 +131,7 @@ public class MainMenu {
     }
 
     private void selectBoard() throws SQLException {
-        System.out.println("Digite o ID do board que deseja selecionar: ");
+        System.out.print("Digite o ID do board que deseja selecionar: ");
 
         Long id;
 
@@ -159,7 +160,7 @@ public class MainMenu {
             return;
         }
 
-        BoardMenu boardMenu = new BoardMenu(entity.get());
+        BoardMenu boardMenu = new BoardMenu(entity.get(),scanner);
 
         this.separator();
         boardMenu.execute();
