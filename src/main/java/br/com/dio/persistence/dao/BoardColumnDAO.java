@@ -2,11 +2,13 @@ package br.com.dio.persistence.dao;
 
 import br.com.dio.persistence.entity.BoardColumnEntity;
 import br.com.dio.persistence.entity.BoardColumnKindEnum;
+import br.com.dio.persistence.entity.BoardEntity;
 import lombok.AllArgsConstructor;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 public class BoardColumnDAO {
@@ -63,6 +65,40 @@ public class BoardColumnDAO {
             }
 
             return boardColumnEntityList;
+        }
+
+    }
+
+    public Optional<BoardColumnEntity> findById(final Long id) throws SQLException {
+
+        var cardDAO = new CardDAO(connection);
+
+        var sql = "SELECT * FROM BOARDS_COLUMNS WHERE id = ?";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setLong(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();;
+
+            if (!resultSet.next()) {
+                return Optional.empty();
+            }
+
+            var boardColumnEntity = new BoardColumnEntity();
+
+            boardColumnEntity.setId(resultSet.getLong("id"));
+            boardColumnEntity.setName(resultSet.getString("name"));
+            boardColumnEntity.setOrder(resultSet.getInt("order"));
+            boardColumnEntity.setKind(BoardColumnKindEnum.fromString(resultSet.getString("kind")));
+            boardColumnEntity.setCards(cardDAO.findByBoardColumnId(boardColumnEntity.getId()));
+
+            var boardEntity = new BoardEntity();
+
+            boardEntity.setId(resultSet.getLong("board_id"));
+
+            boardColumnEntity.setBoard(boardEntity);
+
+            return Optional.of(boardColumnEntity);
         }
 
     }

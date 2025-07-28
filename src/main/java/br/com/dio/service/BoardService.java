@@ -75,4 +75,19 @@ public class BoardService {
         return Optional.of(entity);
     }
 
+    public void showBoardDetails(final Long id) throws SQLException {
+        var dao = new BoardDAO(connection);
+        var boardColumnService = new BoardColumnService(connection);
+
+
+        var optional = dao.findById(id);
+
+        if(optional.isEmpty()) {
+            return;
+        }
+
+        var entity = optional.get();
+
+        entity.setColumns(boardColumnService.findByBoardId(entity.getId()));
+    }
 }
